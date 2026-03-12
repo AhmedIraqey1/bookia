@@ -14,6 +14,7 @@ abstract class AppThemes {
       centerTitle: true,
       surfaceTintColor: Colors.transparent,
     ),
+    
     dividerColor: Colors.transparent,
     dividerTheme: DividerThemeData(color: AppColors.borderColor),
     textButtonTheme: TextButtonThemeData(
