@@ -5,7 +5,8 @@ class MyPadding extends StatelessWidget {
   final Widget child;
   @override
   Widget build(BuildContext context) {
-    return Padding(padding: EdgeInsetsGeometry.fromLTRB(25, 0, 25, 0),
+    return Padding(
+      padding: EdgeInsetsGeometry.fromLTRB(25, 0, 25, 0),
       child: child,
     );
   }

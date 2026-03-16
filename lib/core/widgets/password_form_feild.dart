@@ -9,13 +9,11 @@ class PasswordFormFeild extends StatefulWidget {
     required this.hintText,
     this.keyboardType,
     this.onTap,
-
   });
   final String hintText;
   final TextInputType? keyboardType;
   final String? Function(String?)? validator;
   final Function()? onTap;
-
 
   @override
   State<PasswordFormFeild> createState() => _PasswordFormFeildState();
@@ -31,7 +29,7 @@ class _PasswordFormFeildState extends State<PasswordFormFeild> {
       validator: widget.validator,
       onChanged: (value) {},
       onTap: widget.onTap,
-     
+
       onTapOutside: (event) {
         FocusManager.instance.primaryFocus?.unfocus();
       },

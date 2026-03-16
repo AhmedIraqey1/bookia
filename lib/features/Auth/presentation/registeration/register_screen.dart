@@ -68,7 +68,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   Gap(15),
                   PasswordFormFeild(
                     hintText: 'Password',
-                  
+
                     validator: (value) {
                       if (value == null || value.isEmpty) {
                         return "The field is empty";
@@ -86,7 +86,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   Gap(15),
                   PasswordFormFeild(
                     hintText: 'Confirm password',
-                    
+
                     validator: (value) {
                       if (value == null || value.isEmpty) {
                         return "The field is empty";

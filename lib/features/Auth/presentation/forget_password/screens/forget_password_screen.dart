@@ -67,7 +67,7 @@ class _ForgetPasswordScreenState extends State<ForgetPasswordScreen> {
                       return null;
                     },
                   ),
-                  
+
                   Gap(30),
                   MainButton(
                     text: 'Send Code',

@@ -5,7 +5,6 @@ import 'package:flutter/material.dart';
 
 abstract class AppThemes {
   static ThemeData get lightTheme => ThemeData(
-    
     fontFamily: AppFonts.dMSerif,
     scaffoldBackgroundColor: AppColors.backgroundColor,
     appBarTheme: AppBarTheme(
@@ -14,7 +13,7 @@ abstract class AppThemes {
       centerTitle: true,
       surfaceTintColor: Colors.transparent,
     ),
-    
+
     dividerColor: Colors.transparent,
     dividerTheme: DividerThemeData(color: AppColors.borderColor),
     textButtonTheme: TextButtonThemeData(
@@ -23,6 +22,5 @@ abstract class AppThemes {
         minimumSize: Size(60, 30),
       ),
     ),
-    
   );
 }

@@ -1,4 +1,3 @@
-
 import 'package:bookia/core/styles/colors.dart';
 import 'package:bookia/core/styles/text_styles.dart';
 import 'package:flutter/material.dart';
@@ -11,7 +10,7 @@ class MainButton extends StatelessWidget {
     required this.text,
     this.width = double.infinity,
     this.height = 60,
-    this.borderColor = AppColors.primaryColor, 
+    this.borderColor = AppColors.primaryColor,
     required this.onTap,
   });
   final Color bgColor;
@@ -26,8 +25,7 @@ class MainButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: onTap,
-       
-      
+
       child: Container(
         width: width,
         height: height,

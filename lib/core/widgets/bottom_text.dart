@@ -4,7 +4,10 @@ import 'package:flutter/material.dart';
 
 class BottomText extends StatelessWidget {
   const BottomText({
-    super.key, required this.text, required this.textButton, required this.onTap,
+    super.key,
+    required this.text,
+    required this.textButton,
+    required this.onTap,
   });
   final String text;
   final String textButton;
@@ -15,18 +18,14 @@ class BottomText extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Text(
-         text,
-          style: TextStyles.caption1.copyWith(
-            color: AppColors.darkColor,
-          ),
+          text,
+          style: TextStyles.caption1.copyWith(color: AppColors.darkColor),
         ),
         GestureDetector(
-          onTap:onTap,
+          onTap: onTap,
           child: Text(
             textButton,
-            style: TextStyles.caption1.copyWith(
-              color: AppColors.primaryColor,
-            ),
+            style: TextStyles.caption1.copyWith(color: AppColors.primaryColor),
           ),
         ),
       ],

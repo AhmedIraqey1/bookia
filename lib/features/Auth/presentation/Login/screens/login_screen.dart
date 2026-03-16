@@ -11,7 +11,7 @@ import 'package:bookia/core/widgets/my_padding.dart';
 import 'package:bookia/core/widgets/password_form_feild.dart';
 import 'package:bookia/features/Auth/presentation/widgets/sign_in_with.dart';
 import 'package:bookia/features/Auth/presentation/forget_password/screens/forget_password_screen.dart';
-import 'package:bookia/features/Auth/registeration/register_screen.dart';
+import 'package:bookia/features/Auth/presentation/registeration/register_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:gap/gap.dart';
@@ -24,6 +24,7 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
+  final TextEditingController _passwordController = TextEditingController();
   final formkey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
