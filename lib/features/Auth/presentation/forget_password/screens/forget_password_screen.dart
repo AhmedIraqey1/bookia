@@ -6,6 +6,7 @@ import 'package:bookia/core/widgets/custom_form_feild.dart';
 import 'package:bookia/core/widgets/head_line_text.dart';
 import 'package:bookia/core/widgets/main_button.dart';
 import 'package:bookia/core/widgets/my_padding.dart';
+import 'package:bookia/features/Auth/presentation/forget_password/screens/otp_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:gap/gap.dart';
@@ -66,11 +67,14 @@ class _ForgetPasswordScreenState extends State<ForgetPasswordScreen> {
                       return null;
                     },
                   ),
+                  
                   Gap(30),
                   MainButton(
                     text: 'Send Code',
                     onTap: () {
-                      if (formkey.currentState!.validate()) {}
+                      if (formkey.currentState!.validate()) {
+                        pushTo(context, OtpScreen());
+                      }
                     },
                   ),
                   Spacer(),
