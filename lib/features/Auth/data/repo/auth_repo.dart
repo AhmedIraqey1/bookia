@@ -1,29 +1,45 @@
-import 'dart:nativewrappers/_internal/vm/lib/math_patch.dart';
+import 'dart:developer';
 
-import 'package:bookia/features/Auth/data/models/register_response/register_response.dart';
-import 'package:dio/dio.dart';
+import 'package:bookia/core/services/dio/apis.dart';
+import 'package:bookia/core/services/dio/dio_provider.dart';
+import 'package:bookia/features/Auth/data/models/register_params.dart';
+import 'package:bookia/features/Auth/data/models/auth_response/auth_response.dart';
 
 class AuthRepo {
-  Future<RegisterResponse?> register() async {
+  static Future<AuthResponse?> register(RegisterParams params) async {
     try {
-      var response = await Dio().post(
-        'https://codingarabic.online/ap/register',
-        data: {
-          "name": "Ahmed",
-          "email": "sayed888@gmail.com",
-          "password": "12345678",
-          "password_confirmation": "12345678",
-        },
+      var response = await DioProvider.post(
+        endpoint: Apis.register,
+        data: params.toJson(),
       );
       if (response.statusCode == 201) {
         response.data;
-        RegisterResponse data = RegisterResponse.fromJson(response.data);
+        AuthResponse data = AuthResponse.fromJson(response.data);
         return data;
       } else {
         return null;
       }
     } on Exception catch (e) {
-      log(e.toString() as num);
+      log(e.toString());
+      return null;
+    }
+  }
+
+  static Future<AuthResponse?> login(RegisterParams params) async {
+    try {
+      var response = await DioProvider.post(
+        endpoint: Apis.register,
+        data: params.toJson(),
+      );
+      if (response.statusCode == 200) {
+        response.data;
+        AuthResponse data = AuthResponse.fromJson(response.data);
+        return data;
+      } else {
+        return null;
+      }
+    } on Exception catch (e) {
+      log(e.toString());
       return null;
     }
   }

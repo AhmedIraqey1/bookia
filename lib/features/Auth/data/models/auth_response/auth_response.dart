@@ -1,15 +1,15 @@
 import 'data.dart';
 
-class RegisterResponse {
+class AuthResponse {
   Data? data;
   String? message;
   List<dynamic>? error;
   int? status;
 
-  RegisterResponse({this.data, this.message, this.error, this.status});
+  AuthResponse({this.data, this.message, this.error, this.status});
 
-  factory RegisterResponse.fromJson(Map<String, dynamic> json) {
-    return RegisterResponse(
+  factory AuthResponse.fromJson(Map<String, dynamic> json) {
+    return AuthResponse(
       data: json['data'] == null
           ? null
           : Data.fromJson(json['data'] as Map<String, dynamic>),

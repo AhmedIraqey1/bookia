@@ -1,9 +1,11 @@
+import 'package:bookia/core/services/dio/dio_provider.dart';
 import 'package:bookia/core/themes/themes.dart';
 import 'package:bookia/features/intro/Screens/splash_screen.dart';
 
 import 'package:flutter/material.dart';
 
 void main() {
+  DioProvider.init();
   runApp(const MainApp());
 }
 
