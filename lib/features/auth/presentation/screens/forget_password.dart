@@ -3,22 +3,21 @@ import 'package:bookia/core/functions/navigations.dart';
 import 'package:bookia/core/styles/colors.dart';
 import 'package:bookia/core/styles/text_styles.dart';
 import 'package:bookia/core/widgits/Email_feild.dart';
-import 'package:bookia/core/widgits/custom_text_form_feild.dart';
 import 'package:bookia/core/widgits/dialogs.dart';
 import 'package:bookia/core/widgits/main_button.dart';
 import 'package:bookia/core/widgits/my_padding.dart';
 import 'package:bookia/core/widgits/my_safe_area.dart';
-import 'package:bookia/core/widgits/passwordt_feild%20.dart';
 import 'package:bookia/features/auth/cubit/auth_cubit.dart';
 import 'package:bookia/features/auth/cubit/auth_state.dart';
 import 'package:bookia/features/auth/presentation/screens/login_screen.dart';
+import 'package:bookia/features/auth/presentation/screens/otp_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:gap/gap.dart';
 
-class RegisterScreen extends StatelessWidget {
-  const RegisterScreen({super.key});
+class ForgetPasswordScreen extends StatelessWidget {
+  const ForgetPasswordScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -38,80 +37,73 @@ class RegisterScreen extends StatelessWidget {
           ),
           body: BlocConsumer<AuthCubit, AuthState>(
             listener: (context, state) {
-              if (state is AuthSuccess) {
+              if (state is AuthLoading) {
+                showDialogLoading(context);
+              } else if (state is AuthSuccess) {
                 pop(context);
-                // Show success message or navigate to another screen
                 ScaffoldMessenger.of(
                   context,
-                ).showSnackBar(SnackBar(content: Text('Register successful!')));
-                // Optionally, navigate to the login screen or home screen
+                ).showSnackBar(SnackBar(content: Text('Reset successful!')));
                 pushReplacementTo(context, LoginScreen());
               } else if (state is AuthError) {
                 pop(context);
-                // Show error message
-                showErrorDialog(state.message, context);
-              }
-              if (state is AuthLoading) {
-                // Show loading message
-                showDialogLoading(context);
+                ScaffoldMessenger.of(
+                  context,
+                ).showSnackBar(SnackBar(content: Text('An error occurred.')));
               }
               // TODO: implement listener
             },
             builder: (context, state) {
               var authCubit = context.read<AuthCubit>();
               return MyPadding(
-                child: Form(
-                  key: authCubit.formKey,
+                child: Center(
                   child: SingleChildScrollView(
                     child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-
                       children: [
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            Text(
+                              'Forgot Password?',
+                              style: TextStyles.headline.copyWith(fontSize: 35),
+                            ),
+                          ],
+                        ),
+                        Gap(15),
                         Text(
-                          'Hello! Register to get started',
-                          style: TextStyles.headline.copyWith(fontSize: 35),
+                          "Don't worry! It occurs. Please enter the email address linked with your account.",
+                          style: TextStyles.body.copyWith(
+                            color: AppColors.iconsColor,
+                          ),
                         ),
                         Gap(35),
-                        CustomTextFormFeild(
-                          hintText: 'username',
-                          readOnly: false,
-                        ),
-                        Gap(15),
-                        EmailFeild(hintText: 'Email',controller: authCubit.emailController,),
-                        Gap(15),
-                        PasswordFeild(hintText: 'Password',controller: authCubit.passwordController,),
-                        Gap(15),
-                        PasswordFeild(hintText: 'Confirm password',controller: authCubit.passwordConfirmationController,),
-
-                        Gap(30),
-
+                        EmailFeild(hintText: 'Email'),
+                        Gap(35),
                         MainButton(
-                          text: 'Register',
+                          text: 'Send Code',
                           onPressed: () {
-                            if (authCubit.formKey.currentState!.validate()) {
-                              authCubit.register();
-                            }
+                            // TODO: Implement reset password logic
+                            authCubit.forgetPassword();
+                            // pushTo(context, const OtpScreen());
                           },
                           height: 60,
                         ),
-
-                        Gap(230),
+                        Gap(450),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             Text(
-                              'Already have an account?',
+                              "Remember password? ",
                               style: TextStyles.body.copyWith(
-                                color: AppColors.dark,
+                                color: AppColors.iconsColor,
                               ),
                             ),
-                            Gap(5),
                             GestureDetector(
                               onTap: () {
-                                pushReplacementTo(context, LoginScreen());
+                                pushTo(context, const LoginScreen());
                               },
                               child: Text(
-                                'Login now',
+                                'Login',
                                 style: TextStyles.body.copyWith(
                                   color: AppColors.primary,
                                 ),

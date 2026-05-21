@@ -9,6 +9,7 @@ import 'package:bookia/core/widgits/my_padding.dart';
 import 'package:bookia/core/widgits/my_safe_area.dart';
 import 'package:bookia/core/widgits/passwordt_feild%20.dart';
 import 'package:bookia/features/auth/cubit/auth_state.dart';
+import 'package:bookia/features/auth/presentation/screens/forget_password.dart';
 import 'package:bookia/features/auth/presentation/screens/register_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -71,17 +72,28 @@ class LoginScreen extends StatelessWidget {
                           style: TextStyles.headline.copyWith(fontSize: 35),
                         ),
                         Gap(35),
-                        EmailFeild(hintText: 'Email'),
+                        EmailFeild(
+                          hintText: 'Email',
+                          controller: authCubit.emailController,
+                        ),
                         Gap(15),
-                        PasswordFeild(hintText: 'Password'),
+                        PasswordFeild(
+                          hintText: 'Password',
+                          controller: authCubit.passwordController,
+                        ),
                         Gap(15),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.end,
                           children: [
-                            Text(
-                              'Forgot Password?',
-                              style: TextStyles.caption.copyWith(
-                                color: AppColors.primary,
+                            GestureDetector(
+                              onTap: () {
+                                pushTo(context, ForgetPasswordScreen());
+                              },
+                              child: Text(
+                                'Forgot Password?',
+                                style: TextStyles.caption.copyWith(
+                                  color: AppColors.primary,
+                                ),
                               ),
                             ),
                           ],

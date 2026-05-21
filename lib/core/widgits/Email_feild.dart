@@ -2,13 +2,16 @@ import 'package:bookia/core/functions/validations.dart';
 import 'package:flutter/material.dart';
 
 class EmailFeild extends StatelessWidget {
-  const EmailFeild({super.key, required this.hintText});
+  // 1. خليناه يستقبل الـ controller هنا من بره الـ ويدجت
+  const EmailFeild({super.key, required this.hintText, this.controller});
+  
   final String hintText;
+  final TextEditingController? controller; // 2. تعريف المتغير
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
-      controller: TextEditingController(),
+      controller: controller, // 3. ربطناه هنا بالـ TextFormField بدل القديم
       onTapOutside: (event) {
         FocusManager.instance.primaryFocus?.unfocus();
       },
@@ -19,13 +22,9 @@ class EmailFeild extends StatelessWidget {
         if (input == null || input.isEmpty) {
           return 'Please enter your Email';
         }
-
-        // استخدام الدالة اللي إنت عرفتها في ملف Validations
         if (!isEmail(input)) {
           return 'Please enter a valid Email (e.g., name@domain.com)';
         }
-
-        // لو كل حاجة تمام بنرجع null
         return null;
       },
     );

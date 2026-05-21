@@ -69,5 +69,6 @@ abstract class AppThemes {
       elevation: 0,
     ),
     dividerColor: AppColors.accentColor,
+    
   );
 }

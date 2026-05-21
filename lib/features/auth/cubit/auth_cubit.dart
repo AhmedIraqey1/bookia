@@ -43,4 +43,22 @@ class AuthCubit extends Cubit<AuthState> {
       emit(AuthError(message: 'Registration failed. Please check your information and try again.'));
     }
   }
+   Future<void> forgetPassword()async {
+    emit(AuthLoading());
+    var response = await AuthRepo.forgetPassword(emailController.text);
+    if (response != null && (response.statusCode == 200 || response.statusCode == 201)) {
+      emit(AuthSuccess());
+    } else {
+      emit(AuthError(message: 'Reset password failed. Please check your email and try again.'));
+    }
+   }
+  // ضيف الدالة دي في آخر ملف الـ AuthCubit قبل قوس الإغلاق الأخير }
+  @override
+  Future<void> close() {
+    usernameController.dispose();
+    passwordController.dispose();
+    emailController.dispose();
+    passwordConfirmationController.dispose();
+    return super.close();
+  }
 }
